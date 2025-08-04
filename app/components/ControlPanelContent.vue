@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RadioGroupItem } from '@nuxt/ui';
+import type { Preset } from '~/composables/usePresets';
 
 const unitItems = [
   { label: 'px', value: 'px' },
@@ -8,19 +9,18 @@ const unitItems = [
   { label: 'rem', value: 'rem' }
 ] as const satisfies RadioGroupItem[];
 
-const {
-  radiusBasic,
-  radiusAdvanced4,
-  radiusAdvanced8,
-  controlMode,
-  unit,
-} = useBorderRadius();
+const { radiusBasic, radiusAdvanced4, radiusAdvanced8, controlMode, unit, } = useBorderRadius();
+const { applyPreset, getPresetsByMode } = usePresets();
 
 const controlModeItems = [
   { label: 'Basic', value: CONTROL_MODES.basic },
   { label: '4-Corner', value: CONTROL_MODES.advanced4 },
   { label: '8-Value', value: CONTROL_MODES.advanced8 }
 ];
+
+const handlePresetSelect = (preset: Preset) => {
+  applyPreset(preset);
+};
 </script>
 
 <template>
@@ -39,6 +39,12 @@ const controlModeItems = [
         label="Control Mode"
         label-icon="i-lucide-scan"
         :items="controlModeItems"
+      />
+
+      <PresetList
+        :presets="getPresetsByMode(controlMode)"
+        class="border-b pb-5"
+        @preset-select="handlePresetSelect"
       />
 
       <template v-if="controlMode === CONTROL_MODES.basic">

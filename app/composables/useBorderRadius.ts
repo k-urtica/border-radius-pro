@@ -1,6 +1,3 @@
-/**
- * Control mode constants.
- */
 export const CONTROL_MODES = {
   basic: 'basic',
   advanced4: 'advanced4',
@@ -122,5 +119,8 @@ export function useBorderRadius() {
     unit,
     borderRadiusValue,
     borderRadiusCss,
+    getBasicRadiusValue,
+    getAdvanced4RadiusValue,
+    getAdvanced8RadiusValue
   };
 };
