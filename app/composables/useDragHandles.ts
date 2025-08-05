@@ -60,17 +60,17 @@ export function useDragHandles(
   let stopFns: Array<() => void> = [];
 
   const handles = computed<ComputedHandle[]>(() =>
-    HANDLE_DEFINITIONS.map((def) => {
-      const value = radiusState.value[def.key];
+    HANDLE_DEFINITIONS.map(({ key, positionKey, offset, ariaLabel }) => {
+      const value = radiusState.value[key];
 
       return {
-        key: def.key,
+        key,
         value,
         style: {
-          ...def.offset,
-          [def.positionKey]: `${value}%`
+          ...offset,
+          [positionKey]: `${value}%`
         },
-        ariaLabel: def.ariaLabel
+        ariaLabel
       };
     })
   );
