@@ -4,7 +4,7 @@ const props = defineProps<{
   borderRadiusValue: string;
 }>();
 
-const { controlMode, radiusAdvanced4 } = useBorderRadius();
+const { controlMode, radiusAdvanced4, radiusAdvanced8 } = useBorderRadius();
 
 const showOutline = ref(false);
 const previewElementRef = useTemplateRef('previewElementRef');
@@ -17,7 +17,13 @@ const previewStyle = computed(() => ({
   borderRadius: props.borderRadiusValue,
 }));
 
-const { draggingKey, handles, startDrag, onKeyDown } = useDragHandles(radiusAdvanced4, previewElementRef);
+const { draggingKey, handles, startDrag, onKeyDown } = useDragHandles4(radiusAdvanced4, previewElementRef);
+const {
+  draggingKey: draggingKey8,
+  handles: handles8,
+  startDrag: startDrag8,
+  onKeyDown: onKeyDown8
+} = useDragHandles8(radiusAdvanced8, previewElementRef);
 </script>
 
 <template>
@@ -58,28 +64,65 @@ const { draggingKey, handles, startDrag, onKeyDown } = useDragHandles(radiusAdva
 
       <template v-if="shouldShowHandles">
         <template v-if="controlMode === CONTROL_MODES.advanced4">
-          <div
+          <UTooltip
             v-for="handle in handles"
             :key="handle.key"
-            :class="cn('absolute size-8 cursor-grab rounded-full transition-colors duration-200 hover:bg-inverted/5', {
-              'cursor-grabbing bg-inverted/5 ring-1 ring-inverted/20': draggingKey === handle.key
-            })"
-            :style="handle.style"
-            :aria-label="handle.ariaLabel"
-            role="slider"
-            tabindex="0"
-            :aria-valuenow="handle.value"
-            :aria-valuemin="0"
-            :aria-valuemax="100"
-            @mousedown="startDrag(handle.key, $event)"
-            @touchstart="startDrag(handle.key, $event)"
-            @keydown="onKeyDown(handle.key, $event)"
+            :text="handle.key"
+            arrow
+            :ui="{ text: 'capitalize' }"
           >
-            <span
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-0 m-auto size-4 rounded-full bg-white/50 ring-1 ring-black/70"
-            />
-          </div>
+            <div
+              :class="cn('absolute size-8 cursor-grab rounded-full transition-colors duration-200 hover:bg-inverted/5', {
+                'cursor-grabbing bg-inverted/5 ring-1 ring-inverted/20': draggingKey === handle.key
+              })"
+              :style="handle.style"
+              :aria-label="handle.ariaLabel"
+              role="slider"
+              tabindex="0"
+              :aria-valuenow="handle.value"
+              :aria-valuemin="0"
+              :aria-valuemax="100"
+              @mousedown="startDrag(handle.key, $event)"
+              @touchstart="startDrag(handle.key, $event)"
+              @keydown="onKeyDown(handle.key, $event)"
+            >
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute inset-0 m-auto size-4 rounded-full bg-white/50 ring-1 ring-black/70"
+              />
+            </div>
+          </UTooltip>
+        </template>
+
+        <template v-else-if="controlMode === CONTROL_MODES.advanced8">
+          <UTooltip
+            v-for="handle in handles8"
+            :key="handle.key"
+            :text="handle.key"
+            arrow
+            :ui="{ text: 'capitalize' }"
+          >
+            <div
+              :class="cn('absolute size-8 cursor-grab rounded-full transition-colors duration-200 hover:bg-inverted/5', {
+                'cursor-grabbing bg-inverted/5 ring-1 ring-inverted/20': draggingKey8 === handle.key
+              })"
+              :style="handle.style"
+              :aria-label="handle.ariaLabel"
+              role="slider"
+              tabindex="0"
+              :aria-valuenow="handle.value"
+              :aria-valuemin="0"
+              :aria-valuemax="100"
+              @mousedown="startDrag8(handle.key, $event)"
+              @touchstart="startDrag8(handle.key, $event)"
+              @keydown="onKeyDown8(handle.key, $event)"
+            >
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute inset-0 m-auto size-4 rounded-full bg-white/50 ring-1 ring-black/70"
+              />
+            </div>
+          </UTooltip>
         </template>
       </template>
     </div>

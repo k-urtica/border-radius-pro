@@ -3,7 +3,7 @@ import type { RadiusAdvanced4 } from '@/composables/useBorderRadius';
 
 type RadiusKey = keyof RadiusAdvanced4;
 
-interface ComputedHandle {
+interface ComputedHandle4 {
   key: RadiusKey;
   value: number;
   style: Record<string, string>;
@@ -17,7 +17,7 @@ interface HandleBounds {
   height: number;
 }
 
-interface HandleDefinition {
+interface HandleDefinition4 {
   key: RadiusKey;
   positionKey: 'top' | 'left';
   offset: Partial<Record<'top' | 'right' | 'bottom' | 'left' | 'transform', string>>;
@@ -49,9 +49,9 @@ const HANDLE_DEFINITIONS = [
     offset: { left: '-1rem', transform: 'translateY(-50%)' },
     ariaLabel: 'Adjust left edge radius value'
   }
-] as const satisfies HandleDefinition[];
+] as const satisfies HandleDefinition4[];
 
-export function useDragHandles(
+export function useDragHandles4(
   radiusState: Ref<RadiusAdvanced4>,
   previewElementRef: Ref<HTMLElement | null>
 ) {
@@ -59,7 +59,7 @@ export function useDragHandles(
   const { width, height, left, top } = useElementBounding(previewElementRef);
   let stopFns: Array<() => void> = [];
 
-  const handles = computed<ComputedHandle[]>(() =>
+  const handles = computed<ComputedHandle4[]>(() =>
     HANDLE_DEFINITIONS.map(({ key, positionKey, offset, ariaLabel }) => {
       const value = radiusState.value[key];
 
