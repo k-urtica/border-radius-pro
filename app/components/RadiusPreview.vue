@@ -1,14 +1,48 @@
 <script setup lang="ts">
-const props = defineProps<{
-  /** border-radius CSS value to apply to the preview element */
-  borderRadiusValue: string;
-}>();
+import type { HandleKey4 } from '@/composables/useDragHandles4';
+import type { HandleKey8 } from '@/composables/useDragHandles8';
+
+interface HandlesManager {
+  handles: ReadonlyArray<ComputedHandle4> | ReadonlyArray<ComputedHandle8>;
+  draggingKey: HandleKey4 | HandleKey8 | undefined;
+  onStartDrag: (handle: { key: HandleKey4 | HandleKey8 }, event: MouseEvent | TouchEvent) => void;
+  onKeyDown: (handle: { key: HandleKey4 | HandleKey8 }, event: KeyboardEvent) => void;
+}
+
+const { borderRadiusCss, controlMode, radiusAdvanced4, radiusAdvanced8 } = useBorderRadius();
 
 const showOutline = ref(false);
+const previewElementRef = useTemplateRef('previewElementRef');
 
-const previewStyle = computed(() => ({
-  borderRadius: props.borderRadiusValue,
-}));
+const shouldShowHandles = computed(() =>
+  controlMode.value === CONTROL_MODES.advanced4 || controlMode.value === CONTROL_MODES.advanced8
+);
+
+const {
+  draggingKey: draggingKey4,
+  handles: handles4,
+  startDrag: startDrag4,
+  onKeyDown: onKeyDown4
+} = useDragHandles4(radiusAdvanced4, previewElementRef);
+const {
+  draggingKey: draggingKey8,
+  handles: handles8,
+  startDrag: startDrag8,
+  onKeyDown: onKeyDown8
+} = useDragHandles8(radiusAdvanced8, previewElementRef);
+
+const isMode4 = computed(() => controlMode.value === CONTROL_MODES.advanced4);
+
+const handlesManager = computed<HandlesManager>(() => {
+  const currentHandles = isMode4.value ? handles4.value : handles8.value;
+  const currentDraggingKey = isMode4.value ? draggingKey4.value : draggingKey8.value;
+  return {
+    handles: currentHandles,
+    draggingKey: currentDraggingKey,
+    onStartDrag: ({ key }, event) => isMode4.value ? startDrag4(key as HandleKey4, event) : startDrag8(key as HandleKey8, event),
+    onKeyDown: ({ key }, event) => isMode4.value ? onKeyDown4(key as HandleKey4, event) : onKeyDown8(key as HandleKey8, event)
+  };
+});
 </script>
 
 <template>
@@ -32,12 +66,13 @@ const previewStyle = computed(() => ({
     </div>
 
     <div
+      ref="previewElementRef"
       aria-label="Preview Element"
       class="relative"
     >
       <div
-        class="relative size-48 bg-gradient-to-br from-primary to-error transition-all duration-150 will-change-[border-radius] @xl:size-72 @3xl:size-[420px]"
-        :style="previewStyle"
+        class="relative size-48 bg-gradient-to-br from-primary to-error transition-all duration-100 ease-out will-change-[border-radius] @xl:size-72 @3xl:size-[460px]"
+        :style="borderRadiusCss"
       />
 
       <div
@@ -45,6 +80,21 @@ const previewStyle = computed(() => ({
         aria-hidden="true"
         class="pointer-events-none absolute inset-0 border-2 border-dashed border-accented"
       />
+
+      <template v-if="shouldShowHandles">
+        <RadiusHandle
+          v-for="handle in handlesManager.handles"
+          :key="handle.key"
+          :value="handle.value"
+          :style="handle.style"
+          :aria-label="handle.ariaLabel"
+          :tooltip="handle.key"
+          :dragging="handlesManager.draggingKey === handle.key"
+          @mousedown="handlesManager.onStartDrag(handle, $event)"
+          @touchstart="handlesManager.onStartDrag(handle, $event)"
+          @keydown="handlesManager.onKeyDown(handle, $event)"
+        />
+      </template>
     </div>
   </div>
 </template>

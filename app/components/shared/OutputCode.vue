@@ -27,7 +27,14 @@ const handleCopy = async () => {
 
 <template>
   <section>
-    <h3 v-if="title" class="mb-1 text-sm font-semibold">{{ title }}</h3>
+    <BaseIconText
+      v-if="title"
+      as="h3"
+      icon="i-lucide-code"
+      class="mb-1 text-sm font-semibold"
+    >
+      {{ title }}
+    </BaseIconText>
     <div
       role="group"
       :aria-label="`Code block${title ? ` for ${title}` : ''}`"

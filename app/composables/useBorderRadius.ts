@@ -69,9 +69,9 @@ export function useBorderRadius() {
 
   const radiusAdvanced8 = useState<RadiusAdvanced8>('radius-advanced8', () => ({
     topLeft: { horizontal: 30, vertical: 30 },
-    topRight: { horizontal: 70, vertical: 30 },
-    bottomRight: { horizontal: 70, vertical: 70 },
-    bottomLeft: { horizontal: 30, vertical: 70 }
+    topRight: { horizontal: 30, vertical: 30 },
+    bottomRight: { horizontal: 30, vertical: 30 },
+    bottomLeft: { horizontal: 30, vertical: 30 }
   }));
 
   const controlMode = useState<ControlMode>('control-mode', () => CONTROL_MODES.basic);
@@ -87,7 +87,7 @@ export function useBorderRadius() {
 
   const getAdvanced4RadiusValue = (radius: RadiusAdvanced4): string => {
     const { top, right, bottom, left } = radius;
-    return `${top}% ${100 - top}% ${100 - bottom}% ${bottom}% / ${left}% ${100 - right}% ${right}% ${100 - left}%`;
+    return `${top}% ${100 - top}% ${100 - bottom}% ${bottom}% / ${left}% ${right}% ${100 - right}% ${100 - left}%`;
   };
 
   const getAdvanced8RadiusValue = (radius: RadiusAdvanced8): string => {
