@@ -3,21 +3,15 @@ import type { RadiusAdvanced8 } from '@/composables/useBorderRadius';
 
 type RadiusCorner = keyof RadiusAdvanced8;
 type RadiusDirection = 'horizontal' | 'vertical';
+type HandleKey = `${RadiusCorner}-${RadiusDirection}`;
 
-interface ComputedHandle8 {
-  key: string;
+export interface ComputedHandle8 {
+  key: HandleKey;
   corner: RadiusCorner;
   direction: RadiusDirection;
   value: number;
   style: Record<string, string>;
   ariaLabel: string;
-}
-
-interface HandleBounds {
-  left: number;
-  top: number;
-  width: number;
-  height: number;
 }
 
 interface HandleDefinition8 {
@@ -86,15 +80,14 @@ export function useDragHandles8(
   radiusState: Ref<RadiusAdvanced8>,
   previewElementRef: Ref<HTMLElement | null>
 ) {
-  const draggingKey = ref<string>();
-  const { width, height, left, top } = useElementBounding(previewElementRef);
+  const draggingKey = ref<HandleKey>();
   let stopFns: Array<() => void> = [];
 
   const handles = computed<ComputedHandle8[]>(() =>
     HANDLE_DEFINITIONS_8.map(({ corner, direction, positionCalculator, ariaLabel }) => {
       const value = radiusState.value[corner][direction];
       const position = positionCalculator(value);
-      const key = `${corner}-${direction}`;
+      const key: HandleKey = `${corner}-${direction}`;
 
       return {
         key,
@@ -111,14 +104,7 @@ export function useDragHandles8(
     })
   );
 
-  const bounds = computed<HandleBounds>(() => ({
-    left: left.value,
-    top: top.value,
-    width: width.value,
-    height: height.value
-  }));
-
-  function startDrag(key: string, event: MouseEvent | TouchEvent) {
+  function startDrag(key: HandleKey, event: MouseEvent | TouchEvent) {
     draggingKey.value = key;
     event.preventDefault();
     stopFns = [
@@ -134,61 +120,30 @@ export function useDragHandles8(
     if (!currentKey) return;
     event.preventDefault();
 
-    if (!bounds.value.width || !bounds.value.height) return;
-
     const handle = handles.value.find((h) => h.key === currentKey);
     if (!handle) return;
-
     const { corner, direction } = handle;
-    const relativeCoord = getRelativeCoord(event, bounds.value);
+    const el = previewElementRef.value;
+    if (!el) return;
+
+    const { x, y } = getPointerPosition(event, el);
 
     let newValue: number;
-
     if (direction === 'horizontal') {
-      // For horizontal handles, use X coordinate
       if (corner === 'topLeft' || corner === 'bottomLeft') {
-        newValue = (relativeCoord.x / bounds.value.width) * 100;
+        newValue = x * 100;
       } else {
-        // topRight, bottomRight
-        newValue = ((bounds.value.width - relativeCoord.x) / bounds.value.width) * 100;
+        newValue = (1 - x) * 100;
       }
     } else {
-      // For vertical handles, use Y coordinate
       if (corner === 'topLeft' || corner === 'topRight') {
-        newValue = (relativeCoord.y / bounds.value.height) * 100;
+        newValue = y * 100;
       } else {
-        // bottomLeft, bottomRight
-        newValue = ((bounds.value.height - relativeCoord.y) / bounds.value.height) * 100;
+        newValue = (1 - y) * 100;
       }
     }
-
-    newValue = Math.max(0, Math.min(100, newValue));
+    newValue = clampPercent(newValue);
     radiusState.value[corner][direction] = Math.round(newValue);
-  }
-
-  function getRelativeCoord(event: MouseEvent | TouchEvent, bounds: HandleBounds): { x: number; y: number } {
-    let clientX: number;
-    let clientY: number;
-
-    if ('touches' in event && event.touches.length > 0) {
-      const touch = event.touches[0];
-      if (touch) {
-        clientX = touch.clientX;
-        clientY = touch.clientY;
-      } else {
-        return { x: 0, y: 0 };
-      }
-    } else if ('clientX' in event) {
-      clientX = event.clientX;
-      clientY = event.clientY;
-    } else {
-      return { x: 0, y: 0 };
-    }
-
-    return {
-      x: clientX - bounds.left,
-      y: clientY - bounds.top
-    };
   }
 
   function stopDrag() {
@@ -197,19 +152,17 @@ export function useDragHandles8(
     stopFns = [];
   }
 
-  function onKeyDown(handleKey: string, event: KeyboardEvent) {
+  function onKeyDown(handleKey: HandleKey, event: KeyboardEvent) {
     const handle = handles.value.find((h) => h.key === handleKey);
     if (!handle) return;
-
     const { corner, direction } = handle;
     const currentValue = radiusState.value[corner][direction];
-
     if (event.key === 'ArrowUp' || event.key === 'ArrowRight') {
-      radiusState.value[corner][direction] = Math.min(100, currentValue + 1);
+      radiusState.value[corner][direction] = clampPercent(currentValue + 1);
       event.preventDefault();
     }
     if (event.key === 'ArrowDown' || event.key === 'ArrowLeft') {
-      radiusState.value[corner][direction] = Math.max(0, currentValue - 1);
+      radiusState.value[corner][direction] = clampPercent(currentValue - 1);
       event.preventDefault();
     }
   }

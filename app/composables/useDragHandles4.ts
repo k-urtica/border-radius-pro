@@ -1,10 +1,10 @@
 import type { Ref } from 'vue';
 import type { RadiusAdvanced4 } from '@/composables/useBorderRadius';
 
-type RadiusKey = keyof RadiusAdvanced4;
+type HandleKey = keyof RadiusAdvanced4;
 
-interface ComputedHandle4 {
-  key: RadiusKey;
+export interface ComputedHandle4 {
+  key: HandleKey;
   value: number;
   style: Record<string, string>;
   ariaLabel: string;
@@ -18,7 +18,7 @@ interface HandleBounds {
 }
 
 interface HandleDefinition4 {
-  key: RadiusKey;
+  key: HandleKey;
   positionKey: 'top' | 'left';
   offset: Partial<Record<'top' | 'right' | 'bottom' | 'left' | 'transform', string>>;
   ariaLabel: string;
@@ -55,7 +55,7 @@ export function useDragHandles4(
   radiusState: Ref<RadiusAdvanced4>,
   previewElementRef: Ref<HTMLElement | null>
 ) {
-  const draggingKey = ref<RadiusKey>();
+  const draggingKey = ref<HandleKey>();
   const { width, height, left, top } = useElementBounding(previewElementRef);
   let stopFns: Array<() => void> = [];
 
@@ -82,7 +82,7 @@ export function useDragHandles4(
     height: height.value
   }));
 
-  function startDrag(key: RadiusKey, event: MouseEvent | TouchEvent) {
+  function startDrag(key: HandleKey, event: MouseEvent | TouchEvent) {
     draggingKey.value = key;
     event.preventDefault();
     stopFns = [
@@ -100,44 +100,19 @@ export function useDragHandles4(
 
     if (!bounds.value.width || !bounds.value.height) return;
 
-    const currentCoord = getRelativeCoord(currentKey, event, bounds.value);
+    const el = previewElementRef.value;
+    if (!el) return;
+
+    const { x, y } = getPointerPosition(event, el);
+
     let newValue: number;
-
     if (currentKey === 'top' || currentKey === 'bottom') {
-      newValue = (currentCoord / bounds.value.width) * 100;
+      newValue = x * 100;
     } else {
-      newValue = (currentCoord / bounds.value.height) * 100;
+      newValue = y * 100;
     }
-
-    newValue = Math.max(0, Math.min(100, newValue));
-
+    newValue = clampPercent(newValue);
     radiusState.value[currentKey] = Math.round(newValue);
-  }
-
-  function getRelativeCoord(handleKey: RadiusKey, event: MouseEvent | TouchEvent, bounds: HandleBounds): number {
-    let clientX: number;
-    let clientY: number;
-
-    if ('touches' in event && event.touches.length > 0) {
-      const touch = event.touches[0];
-      if (touch) {
-        clientX = touch.clientX;
-        clientY = touch.clientY;
-      } else {
-        return 0;
-      }
-    } else if ('clientX' in event) {
-      clientX = event.clientX;
-      clientY = event.clientY;
-    } else {
-      return 0;
-    }
-
-    if (handleKey === 'top' || handleKey === 'bottom') {
-      return clientX - bounds.left;
-    } else {
-      return clientY - bounds.top;
-    }
   }
 
   function stopDrag() {
@@ -146,15 +121,14 @@ export function useDragHandles4(
     stopFns = [];
   }
 
-  function onKeyDown(handleKey: RadiusKey, event: KeyboardEvent) {
+  function onKeyDown(handleKey: HandleKey, event: KeyboardEvent) {
     const currentValue = radiusState.value[handleKey];
-
     if (event.key === 'ArrowUp' || event.key === 'ArrowRight') {
-      radiusState.value[handleKey] = Math.min(100, currentValue + 1);
+      radiusState.value[handleKey] = clampPercent(currentValue + 1);
       event.preventDefault();
     }
     if (event.key === 'ArrowDown' || event.key === 'ArrowLeft') {
-      radiusState.value[handleKey] = Math.max(0, currentValue - 1);
+      radiusState.value[handleKey] = clampPercent(currentValue - 1);
       event.preventDefault();
     }
   }
