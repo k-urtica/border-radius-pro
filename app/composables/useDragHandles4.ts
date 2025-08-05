@@ -1,10 +1,10 @@
 import type { Ref } from 'vue';
 import type { RadiusAdvanced4 } from '@/composables/useBorderRadius';
 
-type HandleKey = keyof RadiusAdvanced4;
+export type HandleKey4 = keyof RadiusAdvanced4;
 
 export interface ComputedHandle4 {
-  key: HandleKey;
+  key: HandleKey4;
   value: number;
   style: Record<string, string>;
   ariaLabel: string;
@@ -18,7 +18,7 @@ interface HandleBounds {
 }
 
 interface HandleDefinition4 {
-  key: HandleKey;
+  key: HandleKey4;
   positionKey: 'top' | 'left';
   offset: Partial<Record<'top' | 'right' | 'bottom' | 'left' | 'transform', string>>;
   ariaLabel: string;
@@ -51,11 +51,14 @@ const HANDLE_DEFINITIONS = [
   }
 ] as const satisfies HandleDefinition4[];
 
+/**
+ * Composable to manage drag handles for 4-corner border-radius control.
+ */
 export function useDragHandles4(
   radiusState: Ref<RadiusAdvanced4>,
   previewElementRef: Ref<HTMLElement | null>
 ) {
-  const draggingKey = ref<HandleKey>();
+  const draggingKey = ref<HandleKey4>();
   const { width, height, left, top } = useElementBounding(previewElementRef);
   let stopFns: Array<() => void> = [];
 
@@ -82,7 +85,7 @@ export function useDragHandles4(
     height: height.value
   }));
 
-  function startDrag(key: HandleKey, event: MouseEvent | TouchEvent) {
+  function startDrag(key: HandleKey4, event: MouseEvent | TouchEvent) {
     draggingKey.value = key;
     event.preventDefault();
     stopFns = [
@@ -121,7 +124,7 @@ export function useDragHandles4(
     stopFns = [];
   }
 
-  function onKeyDown(handleKey: HandleKey, event: KeyboardEvent) {
+  function onKeyDown(handleKey: HandleKey4, event: KeyboardEvent) {
     const currentValue = radiusState.value[handleKey];
     if (event.key === 'ArrowUp' || event.key === 'ArrowRight') {
       radiusState.value[handleKey] = clampPercent(currentValue + 1);

@@ -3,10 +3,10 @@ import type { RadiusAdvanced8 } from '@/composables/useBorderRadius';
 
 type RadiusCorner = keyof RadiusAdvanced8;
 type RadiusDirection = 'horizontal' | 'vertical';
-type HandleKey = `${RadiusCorner}-${RadiusDirection}`;
+export type HandleKey8 = `${RadiusCorner}-${RadiusDirection}`;
 
 export interface ComputedHandle8 {
-  key: HandleKey;
+  key: HandleKey8;
   corner: RadiusCorner;
   direction: RadiusDirection;
   value: number;
@@ -76,18 +76,21 @@ const HANDLE_DEFINITIONS_8 = [
   }
 ] as const satisfies HandleDefinition8[];
 
+/**
+ * Composable to manage drag handles for 8-value border-radius control.
+ */
 export function useDragHandles8(
   radiusState: Ref<RadiusAdvanced8>,
   previewElementRef: Ref<HTMLElement | null>
 ) {
-  const draggingKey = ref<HandleKey>();
+  const draggingKey = ref<HandleKey8>();
   let stopFns: Array<() => void> = [];
 
   const handles = computed<ComputedHandle8[]>(() =>
     HANDLE_DEFINITIONS_8.map(({ corner, direction, positionCalculator, ariaLabel }) => {
       const value = radiusState.value[corner][direction];
       const position = positionCalculator(value);
-      const key: HandleKey = `${corner}-${direction}`;
+      const key: HandleKey8 = `${corner}-${direction}`;
 
       return {
         key,
@@ -104,7 +107,7 @@ export function useDragHandles8(
     })
   );
 
-  function startDrag(key: HandleKey, event: MouseEvent | TouchEvent) {
+  function startDrag(key: HandleKey8, event: MouseEvent | TouchEvent) {
     draggingKey.value = key;
     event.preventDefault();
     stopFns = [
@@ -152,7 +155,7 @@ export function useDragHandles8(
     stopFns = [];
   }
 
-  function onKeyDown(handleKey: HandleKey, event: KeyboardEvent) {
+  function onKeyDown(handleKey: HandleKey8, event: KeyboardEvent) {
     const handle = handles.value.find((h) => h.key === handleKey);
     if (!handle) return;
     const { corner, direction } = handle;
