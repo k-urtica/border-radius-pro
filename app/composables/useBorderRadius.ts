@@ -87,7 +87,7 @@ export function useBorderRadius() {
 
   const getAdvanced4RadiusValue = (radius: RadiusAdvanced4): string => {
     const { top, right, bottom, left } = radius;
-    return `${top}% ${100 - top}% ${100 - bottom}% ${bottom}% / ${left}% ${100 - right}% ${right}% ${100 - left}%`;
+    return `${top}% ${100 - top}% ${100 - bottom}% ${bottom}% / ${left}% ${right}% ${100 - right}% ${100 - left}%`;
   };
 
   const getAdvanced8RadiusValue = (radius: RadiusAdvanced8): string => {

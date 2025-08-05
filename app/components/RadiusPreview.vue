@@ -4,11 +4,20 @@ const props = defineProps<{
   borderRadiusValue: string;
 }>();
 
+const { controlMode, radiusAdvanced4 } = useBorderRadius();
+
 const showOutline = ref(false);
+const previewElementRef = useTemplateRef('previewElementRef');
+
+const shouldShowHandles = computed(() =>
+  controlMode.value === CONTROL_MODES.advanced4 || controlMode.value === CONTROL_MODES.advanced8
+);
 
 const previewStyle = computed(() => ({
   borderRadius: props.borderRadiusValue,
 }));
+
+const { draggingKey, handles, startDrag, onKeyDown } = useDragHandles(radiusAdvanced4, previewElementRef);
 </script>
 
 <template>
@@ -32,11 +41,12 @@ const previewStyle = computed(() => ({
     </div>
 
     <div
+      ref="previewElementRef"
       aria-label="Preview Element"
       class="relative"
     >
       <div
-        class="relative size-48 bg-gradient-to-br from-primary to-error transition-all duration-150 will-change-[border-radius] @xl:size-72 @3xl:size-[420px]"
+        class="relative size-48 bg-gradient-to-br from-primary to-error transition-all duration-100 ease-out will-change-[border-radius] @xl:size-72 @3xl:size-[420px]"
         :style="previewStyle"
       />
 
@@ -45,6 +55,33 @@ const previewStyle = computed(() => ({
         aria-hidden="true"
         class="pointer-events-none absolute inset-0 border-2 border-dashed border-accented"
       />
+
+      <template v-if="shouldShowHandles">
+        <template v-if="controlMode === CONTROL_MODES.advanced4">
+          <div
+            v-for="handle in handles"
+            :key="handle.key"
+            :class="cn('absolute size-8 cursor-grab rounded-full transition-colors duration-200 hover:bg-inverted/5', {
+              'cursor-grabbing bg-inverted/5 ring-1 ring-inverted/20': draggingKey === handle.key
+            })"
+            :style="handle.style"
+            :aria-label="handle.ariaLabel"
+            role="slider"
+            tabindex="0"
+            :aria-valuenow="handle.value"
+            :aria-valuemin="0"
+            :aria-valuemax="100"
+            @mousedown="startDrag(handle.key, $event)"
+            @touchstart="startDrag(handle.key, $event)"
+            @keydown="onKeyDown(handle.key, $event)"
+          >
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-0 m-auto size-4 rounded-full bg-white/50 ring-1 ring-black/70"
+            />
+          </div>
+        </template>
+      </template>
     </div>
   </div>
 </template>
