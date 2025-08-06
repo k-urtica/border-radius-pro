@@ -1,5 +1,14 @@
 <script setup lang="ts">
+import type { BaseSliderProps } from '@/components/base/BaseSlider.vue';
+
 const { previewSize } = useAppearance();
+
+const sizeSliderProps: BaseSliderProps = {
+  min: 50,
+  max: 600,
+  step: 1,
+  unit: 'px'
+};
 </script>
 
 <template>
@@ -14,20 +23,14 @@ const { previewSize } = useAppearance();
     <div class="space-y-4">
       <BaseSlider
         v-model="previewSize.width"
+        v-bind="sizeSliderProps"
         label="Width"
-        :min="50"
-        :max="500"
-        :step="1"
-        unit="px"
       />
 
       <BaseSlider
         v-model="previewSize.height"
+        v-bind="sizeSliderProps"
         label="Height"
-        :min="50"
-        :max="500"
-        :step="1"
-        unit="px"
       />
     </div>
   </div>

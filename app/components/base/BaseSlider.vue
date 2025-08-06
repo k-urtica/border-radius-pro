@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { SliderProps } from '@nuxt/ui';
 
-const model = defineModel<number>({ default: 0 });
-
-const props = withDefaults(defineProps<{
+export interface BaseSliderProps {
   label?: string;
   labelIcon?: string;
   min?: number;
@@ -11,7 +9,11 @@ const props = withDefaults(defineProps<{
   step?: number;
   size?: SliderProps['size'];
   unit?: string;
-}>(), {
+}
+
+const model = defineModel<number>({ default: 0 });
+
+const props = withDefaults(defineProps<BaseSliderProps>(), {
   min: 0,
   max: 100,
   step: 1,
