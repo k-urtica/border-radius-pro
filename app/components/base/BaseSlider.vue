@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { SliderProps } from '@nuxt/ui';
 
-const model = defineModel<number>({ default: 0 });
-
-const props = withDefaults(defineProps<{
+export interface BaseSliderProps {
   label?: string;
   labelIcon?: string;
   min?: number;
@@ -11,7 +9,11 @@ const props = withDefaults(defineProps<{
   step?: number;
   size?: SliderProps['size'];
   unit?: string;
-}>(), {
+}
+
+const model = defineModel<number>({ default: 0 });
+
+const props = withDefaults(defineProps<BaseSliderProps>(), {
   min: 0,
   max: 100,
   step: 1,
@@ -90,11 +92,11 @@ watch(model, (newValue) => {
       </template>
     </UFormField>
 
-    <div class="mt-2 flex items-center gap-0.5 self-start">
+    <div class="mt-2.5 self-start">
       <UInput
         v-model="inputValue"
         variant="soft"
-        size="sm"
+        size="xs"
         inputmode="numeric"
         :class="[unit ? 'w-16' : 'w-14']"
         :ui="{ base: 'ring-1 ring-muted/30' }"
