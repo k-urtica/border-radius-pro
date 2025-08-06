@@ -68,6 +68,8 @@ const handlePresetSelect = (preset: Preset) => {
         v-else-if="controlMode === CONTROL_MODES.advanced8"
         v-model="radiusAdvanced8"
       />
+
+      <AppearanceSettings class="border-t pt-4" />
     </div>
   </div>
 </template>
