@@ -10,5 +10,12 @@ export default defineAppConfig({
         base: 'rounded-lg'
       }
     },
+
+    tooltip: {
+      slots: {
+        content: 'bg-inverted text-inverted ring-0 rounded-md',
+        arrow: 'fill-inverted'
+      }
+    }
   },
 });
