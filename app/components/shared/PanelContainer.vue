@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue';
 
-defineProps<{
+withDefaults(defineProps<{
+  as?: keyof HTMLElementTagNameMap;
   class?: HTMLAttributes['class'];
-}>();
+}>(), {
+  as: 'div'
+});
 </script>
 
 <template>
-  <div :class="cn('rounded-md border bg-surface', $props.class)">
+  <component :is="as" :class="cn('rounded-md border bg-surface', $props.class)">
     <slot />
-  </div>
+  </component>
 </template>

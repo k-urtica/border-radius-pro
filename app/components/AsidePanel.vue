@@ -7,14 +7,14 @@ const currentYear = new Date().getFullYear();
     <PanelContainer
       class="flex h-full flex-col"
     >
-      <div class="flex h-full min-h-0 flex-1 flex-col gap-1 py-5">
+      <section aria-label="Sponsored" class="flex h-full min-h-0 flex-1 flex-col gap-1 py-5">
         <span class="px-4 text-xs text-muted">Sponsored link</span>
         <div class="h-full overflow-y-auto px-4">
           <AdBanner />
         </div>
-      </div>
+      </section>
 
-      <div class="p-4">
+      <section aria-label="Links" class="p-4">
         <ULink
           to="https://web-toolbox.dev/en"
           target="_blank"
@@ -37,11 +37,11 @@ const currentYear = new Date().getFullYear();
             Open Web ToolBox
           </div>
         </ULink>
+      </section>
 
-        <div class="mt-5 border-t pt-2 text-center text-xs text-muted">
-          © {{ currentYear }} Border Radius Pro
-        </div>
-      </div>
+      <footer class="border-t p-4 text-center text-xs text-muted">
+        © {{ currentYear }} Border Radius Pro
+      </footer>
     </PanelContainer>
   </aside>
 </template>

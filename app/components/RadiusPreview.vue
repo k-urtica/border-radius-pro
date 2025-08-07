@@ -49,8 +49,7 @@ const handlesManager = computed<HandlesManager>(() => {
 </script>
 
 <template>
-  <div
-    role="region"
+  <section
     aria-label="Border radius preview area"
     class="@container relative flex size-full flex-col items-center justify-center overflow-hidden rounded-lg bg-elevated"
   >
@@ -104,5 +103,5 @@ const handlesManager = computed<HandlesManager>(() => {
         </span>
       </UTooltip>
     </div>
-  </div>
+  </section>
 </template>

@@ -19,7 +19,7 @@
         </h1>
       </NuxtLink>
 
-      <div class="ms-auto flex shrink-0 items-center gap-2.5">
+      <nav aria-label="Header Navigation" class="ms-auto flex shrink-0 items-center gap-2.5">
         <DocSwitcher />
 
         <!-- <AboutModal /> -->
@@ -33,7 +33,7 @@
           size="sm"
           class="rounded-full"
         />
-      </div>
+      </nav>
     </PanelContainer>
   </header>
 </template>
