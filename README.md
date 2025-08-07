@@ -3,7 +3,7 @@
 <h1 align="center">🟦 Border Radius Pro</h1>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/25a5eda8-899c-410e-9ccb-94d59775af98" alt="Border Radius Pro" />
+  <img src="https://github.com/user-attachments/assets/444f07bd-f89d-41bb-b5d4-2dcf27bc074e" alt="Border Radius Pro" />
 </p>
 
 <p align="center">
