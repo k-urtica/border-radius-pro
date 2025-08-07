@@ -52,7 +52,7 @@ const previewStyle = (preset: Preset): string => {
           @click="handlePresetClick(preset)"
         >
           <div
-            class="size-4.5 border-2 border-inverted/70"
+            class="size-4 border-2 border-inverted/70"
             :style="{ borderRadius: previewStyle(preset) }"
           />
           <span class="text-xs leading-tight font-medium text-toned">

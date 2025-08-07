@@ -10,7 +10,7 @@ const RADIUS_SLIDER_RANGE = {
 </script>
 
 <template>
-  <div class="flex flex-col space-y-5">
+  <div class="flex flex-col space-y-4">
     <div class="space-y-2.5">
       <h4 class="text-xs font-medium text-muted">Top Left Corner</h4>
       <BaseSlider

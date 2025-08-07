@@ -12,7 +12,7 @@ const sizeSliderProps: BaseSliderProps = {
 </script>
 
 <template>
-  <div>
+  <section aria-label="Appearance settings">
     <BaseIconText
       as="h3"
       icon="i-lucide-palette"
@@ -33,5 +33,5 @@ const sizeSliderProps: BaseSliderProps = {
         label="Height"
       />
     </div>
-  </div>
+  </section>
 </template>

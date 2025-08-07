@@ -10,7 +10,7 @@ const RADIUS_SLIDER_RANGE = {
 </script>
 
 <template>
-  <div class="space-y-5">
+  <div class="space-y-4">
     <BaseSlider
       v-model="model.top"
       label="Top Edge"

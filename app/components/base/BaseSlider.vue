@@ -70,7 +70,7 @@ watch(model, (newValue) => {
 <template>
   <div class="flex items-center justify-between gap-2">
     <UFormField
-      :ui="{ container: 'mt-2' }"
+      :ui="{ container: 'mt-1.5' }"
       class="flex-1"
     >
       <template #label>

@@ -4,6 +4,12 @@ export const CONTROL_MODES = {
   advanced8: 'advanced8'
 } as const;
 
+export const RADIUS_SLIDER_RANGE = {
+  min: 0,
+  max: 100,
+  step: 1,
+} as const;
+
 /**
  * Type for control modes.
  */
