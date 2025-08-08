@@ -51,7 +51,7 @@ export const BASIC_PRESETS: BasicPresetWithUnit[] = [
     name: 'Small',
     type: CONTROL_MODES.basic,
     unit: 'px',
-    values: { topLeft: 4, topRight: 4, bottomRight: 4, bottomLeft: 4 }
+    values: { topLeft: 4, topRight: 4, bottomRight: 4, bottomLeft: 4 },
   },
   {
     name: 'Medium',
@@ -72,10 +72,10 @@ export const BASIC_PRESETS: BasicPresetWithUnit[] = [
     values: { topLeft: 100, topRight: 100, bottomRight: 100, bottomLeft: 100 }
   },
   {
-    name: 'Card',
+    name: 'Drop',
     type: CONTROL_MODES.basic,
     unit: '%',
-    values: { topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12 }
+    values: { topLeft: 80, topRight: 20, bottomRight: 40, bottomLeft: 60 }
   }
 ];
 
@@ -99,19 +99,19 @@ export const ADVANCED4_PRESETS: Advanced4Preset[] = [
     values: { top: 85, right: 15, bottom: 15, left: 85 }
   },
   {
-    name: 'Pebble',
+    name: 'Funky',
     type: CONTROL_MODES.advanced4,
-    values: { top: 65, right: 35, bottom: 50, left: 50 }
+    values: { top: 10, right: 90, bottom: 20, left: 80 }
   },
   {
-    name: 'Fluid',
+    name: 'Petal',
     type: CONTROL_MODES.advanced4,
-    values: { top: 30, right: 70, bottom: 80, left: 20 }
+    values: { top: 40, right: 85, bottom: 15, left: 70 }
   },
   {
-    name: 'Cloud',
+    name: 'Wave',
     type: CONTROL_MODES.advanced4,
-    values: { top: 55, right: 45, bottom: 70, left: 30 }
+    values: { top: 80, right: 20, bottom: 70, left: 30 }
   },
 ];
 
@@ -120,63 +120,63 @@ export const ADVANCED4_PRESETS: Advanced4Preset[] = [
  */
 export const ADVANCED8_PRESETS: Advanced8Preset[] = [
   {
-    name: 'Blob 1',
+    name: 'Heartish',
     type: CONTROL_MODES.advanced8,
     values: {
-      topLeft: { horizontal: 30, vertical: 70 },
-      topRight: { horizontal: 70, vertical: 30 },
-      bottomRight: { horizontal: 70, vertical: 70 },
-      bottomLeft: { horizontal: 30, vertical: 30 }
+      topLeft: { horizontal: 60, vertical: 80 },
+      topRight: { horizontal: 60, vertical: 80 },
+      bottomRight: { horizontal: 30, vertical: 20 },
+      bottomLeft: { horizontal: 30, vertical: 20 }
     }
   },
   {
-    name: 'Blob 2',
+    name: 'Leafy',
     type: CONTROL_MODES.advanced8,
     values: {
-      topLeft: { horizontal: 80, vertical: 20 },
-      topRight: { horizontal: 30, vertical: 70 },
-      bottomRight: { horizontal: 60, vertical: 40 },
-      bottomLeft: { horizontal: 20, vertical: 80 }
-    }
-  },
-  {
-    name: 'Flower',
-    type: CONTROL_MODES.advanced8,
-    values: {
-      topLeft: { horizontal: 75, vertical: 25 },
-      topRight: { horizontal: 25, vertical: 75 },
-      bottomRight: { horizontal: 75, vertical: 25 },
+      topLeft: { horizontal: 35, vertical: 15 },
+      topRight: { horizontal: 15, vertical: 85 },
+      bottomRight: { horizontal: 45, vertical: 25 },
       bottomLeft: { horizontal: 25, vertical: 75 }
     }
   },
   {
-    name: 'Star-like',
+    name: 'Starry',
     type: CONTROL_MODES.advanced8,
     values: {
-      topLeft: { horizontal: 30, vertical: 70 },
-      topRight: { horizontal: 70, vertical: 30 },
-      bottomRight: { horizontal: 30, vertical: 70 },
-      bottomLeft: { horizontal: 70, vertical: 30 }
+      topLeft: { horizontal: 0, vertical: 100 },
+      topRight: { horizontal: 80, vertical: 0 },
+      bottomRight: { horizontal: 0, vertical: 100 },
+      bottomLeft: { horizontal: 70, vertical: 20 }
+    }
+  },
+  {
+    name: 'Bubbly',
+    type: CONTROL_MODES.advanced8,
+    values: {
+      topLeft: { horizontal: 40, vertical: 60 },
+      topRight: { horizontal: 60, vertical: 40 },
+      bottomRight: { horizontal: 50, vertical: 50 },
+      bottomLeft: { horizontal: 30, vertical: 70 }
+    }
+  },
+  {
+    name: 'Tunnel',
+    type: CONTROL_MODES.advanced8,
+    values: {
+      topLeft: { horizontal: 50, vertical: 70 },
+      topRight: { horizontal: 50, vertical: 70 },
+      bottomRight: { horizontal: 20, vertical: 0 },
+      bottomLeft: { horizontal: 20, vertical: 0 }
     }
   },
   {
     name: 'Abstract',
     type: CONTROL_MODES.advanced8,
     values: {
-      topLeft: { horizontal: 85, vertical: 15 },
-      topRight: { horizontal: 40, vertical: 60 },
-      bottomRight: { horizontal: 15, vertical: 85 },
-      bottomLeft: { horizontal: 60, vertical: 40 }
-    }
-  },
-  {
-    name: 'Stone',
-    type: CONTROL_MODES.advanced8,
-    values: {
-      topLeft: { horizontal: 65, vertical: 35 },
-      topRight: { horizontal: 45, vertical: 55 },
-      bottomRight: { horizontal: 55, vertical: 45 },
-      bottomLeft: { horizontal: 35, vertical: 65 }
+      topLeft: { horizontal: 20, vertical: 90 },
+      topRight: { horizontal: 60, vertical: 20 },
+      bottomRight: { horizontal: 10, vertical: 80 },
+      bottomLeft: { horizontal: 40, vertical: 10 }
     }
   },
 ];
