@@ -36,7 +36,8 @@
     "lint-staged": "16.1.2",
     "simple-git-hooks": "2.13.1",
     "tailwind-merge": "3.3.1",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "wrangler": "4.28.1"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

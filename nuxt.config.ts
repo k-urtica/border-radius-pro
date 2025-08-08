@@ -83,6 +83,15 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-07-15',
 
+  nitro: {
+    preset: 'cloudflare-module',
+    prerender: {
+      autoSubfolderIndex: false,
+      crawlLinks: true,
+      routes: ['/', '/sitemap.xml', '/robots.txt'],
+    },
+  },
+
   vite: {
     optimizeDeps: {
       entries: ['pages/**/*.vue', 'components/**/*.vue'],
