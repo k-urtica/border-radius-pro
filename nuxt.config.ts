@@ -1,5 +1,5 @@
 const SITE_NAME = 'Border Radius Pro';
-const DESCRIPTION = 'Border Radius Pro is a powerful tool for generating and managing CSS border-radius values. It supports basic, advanced 8-value, and advanced 4-value border-radius configurations, making it easy to create complex shapes with precision.';
+const DESCRIPTION = 'order Radius Pro is a powerful border-radius generator for CSS. Easily create and manage border-radius values with basic, advanced 8-value, and advanced 4-value configurations. Perfect for designers and developers who want precise, complex shapes and instant code output.';
 const SITE_URL = 'https://border-radius-pro.web-toolbox.dev';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
