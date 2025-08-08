@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/scripts',
     'motion-v/nuxt',
+    '@nuxtjs/mdc'
   ],
 
   $production: {
@@ -53,6 +54,20 @@ export default defineNuxtConfig({
     url: SITE_URL,
     description: DESCRIPTION,
     defaultLocale: 'en',
+  },
+
+  mdc: {
+    remarkPlugins: {
+      'remark-breaks': { }
+    },
+    rehypePlugins: {
+      'rehype-external-links': {
+        options: {
+          target: '_blank',
+          rel: ['noopener', 'noreferrer']
+        }
+      }
+    }
   },
 
   ui: {
