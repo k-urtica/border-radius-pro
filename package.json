@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@nuxt/ui": "3.3.0",
+    "@nuxtjs/mdc": "0.17.2",
     "@nuxtjs/seo": "3.1.0",
     "@vueuse/core": "13.6.0",
     "@vueuse/nuxt": "13.6.0",
     "motion-v": "1.7.0",
     "nuxt": "4.0.2",
+    "remark-breaks": "4.0.0",
     "vue": "3.5.18",
     "vue-router": "4.5.1"
   },

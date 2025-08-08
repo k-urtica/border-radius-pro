@@ -1,0 +1,41 @@
+## Border Radius Pro Tool Guide
+
+### What is Border Radius Pro?
+Border Radius Pro is a free online tool that makes it easy for anyone to create and fine-tune beautiful CSS border-radius designs for web interfaces. Instantly preview and adjust rounded corners for buttons, cards, images, and more—all in real time.
+
+With features like the "CSS Border Radius Generator," advanced 8-point and 4-point handle customization, and precise value control, you can achieve complex shapes that other tools can't handle. Whether you're a beginner or a professional web designer/front-end engineer, Border Radius Pro offers only the most practical features for real-world projects, including code generation, theme switching, and preset selection.
+
+This is a unique border-radius design tool that perfectly balances visual appeal and usability.
+
+### Key Features
+- ✨ **Real-Time Preview**: Instantly see your changes as you drag handles to adjust border radius.
+- 🎯 **8-Point & 4-Point Handle Support**: Easily control complex shapes and see precise CSS values at a glance.
+- 📝 **CSS Code Generation**: Copy the generated CSS with a single click and use it immediately in your projects.
+- 🎨 **Preset Selection**: Choose from popular border-radius presets for quick results and efficient workflow.
+- 🌗 **Dark/Light Theme Switching**: Change the UI to match your workspace or personal preference.
+
+### How to Use
+1. 🎨 Select your favorite border-radius preset from the left panel.
+2. 🖱️ Drag the handles to freely adjust the shape.
+3. 👀 Check the preview and directly input fine values as needed.
+4. 📋 Click the "Copy CSS Code" button to instantly get the generated code.
+5. 🌗 Switch between dark and light themes to suit your environment.
+
+#### Frequently Asked Questions (FAQ)
+❓ **Q. What kind of websites can I use this for?**
+A. You can use it for any UI element with rounded corners—buttons, cards, images, banners, and more. It's especially useful for branding and visual accents.
+
+💻 **Q. What format is the generated code?**
+A. The output is standard CSS (border-radius) properties, ready to copy and paste. Even complex values are generated accurately.
+
+📱 **Q. Can I use it on mobile devices?**
+A. Yes! It's fully responsive, so you can use it comfortably on PC, smartphone, or tablet.
+
+🆚 **Q. How is this different from other border-radius generators?**
+A. Border Radius Pro offers advanced customization with 8-point and 4-point handles, preset selection, real-time preview, and theme switching—features chosen for real-world usability. Its ease of use and design flexibility set it apart.
+
+---
+Border Radius Pro is trusted by many users searching for "CSS border radius," "border-radius generator," "web design tool," "border radius calculator," and "UI design." Try it in your next project!
+
+Border Radius Pro is developed and released as OSS (Open Source Software).
+See the GitHub repository for details: [GitHub - k-urtica/border-radius-pro](https://github.com/k-urtica/border-radius-pro)
