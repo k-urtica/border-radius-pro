@@ -56,7 +56,6 @@ const handlesManager = computed<HandlesManager>(() => {
     <div class="flex size-full min-h-0 flex-col items-center justify-center p-5">
       <div
         ref="previewElementRef"
-        aria-label="Preview Element"
         class="relative max-h-full max-w-full"
       >
         <div
