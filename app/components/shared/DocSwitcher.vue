@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { isDocVisible, toggleDoc } = useDocToggle();
 
-const tipText = computed(() => isDocVisible ? 'Hide documentation' : 'Show documentation');
+const tipText = computed(() => isDocVisible.value ? 'Hide documentation' : 'Show documentation');
 </script>
 
 <template>
