@@ -32,7 +32,8 @@ const handleClearFile = () => {
       ref="inputRef"
       type="file"
       :accept="accept"
-      variant="subtle"
+      variant="soft"
+      :ui="{ base: 'ring-1 ring-muted/80' }"
       @change="handleChangeFile"
     >
       <template #trailing>

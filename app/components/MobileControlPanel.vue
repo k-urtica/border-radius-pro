@@ -6,7 +6,13 @@ const open = ref(false);
   <div
     class="flex items-center px-4 py-2"
   >
-    <UDrawer v-model:open="open" handle-only>
+    <UDrawer
+      v-model:open="open"
+      handle-only
+      :ui="{
+        content: 'bg-default/85'
+      }"
+    >
       <UButton
         icon="i-lucide-settings-2"
         label="Controls"

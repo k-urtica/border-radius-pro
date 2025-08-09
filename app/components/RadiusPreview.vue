@@ -61,7 +61,7 @@ const handlesManager = computed<HandlesManager>(() => {
     aria-label="Border radius preview area"
     class="@container relative flex size-full flex-col items-center justify-center overflow-hidden rounded-lg bg-elevated"
   >
-    <div class="flex size-full min-h-0 flex-col items-center justify-center p-5">
+    <div class="flex size-full min-h-0 flex-col items-center justify-center p-3">
       <div
         ref="previewElementRef"
         class="relative max-h-full max-w-full"

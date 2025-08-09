@@ -38,7 +38,7 @@ const handleCopy = async () => {
     <div
       role="group"
       :aria-label="`Code block${title ? ` for ${title}` : ''}`"
-      class="flex items-center justify-between overflow-hidden rounded-lg border bg-elevated"
+      class="flex items-center justify-between overflow-hidden rounded-lg border border-muted/60 bg-elevated"
     >
       <pre
         class="max-h-20 w-full overflow-x-auto px-5 py-4 font-mono text-sm whitespace-pre"
