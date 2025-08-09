@@ -11,7 +11,7 @@ interface HandlesManager {
 }
 
 const { previewSize, previewBgUrl } = useAppearance();
-const { borderRadiusValue, controlMode, radiusAdvanced4, radiusAdvanced8 } = useBorderRadius();
+const { borderRadiusValue, controlMode, radiusAdvanced4, radiusAdvanced8, randomize } = useBorderRadius();
 
 const showOutline = ref(false);
 const previewElementRef = useTemplateRef('previewElementRef');
@@ -94,17 +94,10 @@ const handlesManager = computed<HandlesManager>(() => {
       </div>
     </div>
 
-    <div class="mx-auto p-2">
-      <UTooltip :text="showOutline ? 'Hide Outline' : 'Show Outline'" arrow>
-        <span>
-          <USwitch
-            v-model="showOutline"
-            checked-icon="i-lucide-square-dashed"
-            unchecked-icon="i-lucide-minus"
-            aria-label="Toggle Outline"
-          />
-        </span>
-      </UTooltip>
-    </div>
+    <RadiusPreviewFooter
+      v-model:outline="showOutline"
+      class="px-4 pb-2"
+      @randomize="randomize"
+    />
   </section>
 </template>

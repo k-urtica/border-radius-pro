@@ -105,6 +105,25 @@ export function useBorderRadius() {
     return horizontalStr === verticalStr ? horizontalStr : `${horizontalStr} / ${verticalStr}`;
   };
 
+  const randomize = () => {
+    const rand = () => Math.floor(Math.random() * 101);
+    switch (controlMode.value) {
+      case CONTROL_MODES.basic:
+        radiusBasic.value = { topLeft: rand(), topRight: rand(), bottomRight: rand(), bottomLeft: rand() };
+        break;
+      case CONTROL_MODES.advanced4:
+        radiusAdvanced4.value = { top: rand(), right: rand(), bottom: rand(), left: rand() };
+        break;
+      case CONTROL_MODES.advanced8:
+        radiusAdvanced8.value = {
+          topLeft: { horizontal: rand(), vertical: rand() },
+          topRight: { horizontal: rand(), vertical: rand() },
+          bottomRight: { horizontal: rand(), vertical: rand() },
+          bottomLeft: { horizontal: rand(), vertical: rand() }
+        };
+    }
+  };
+
   const borderRadiusValue = computed(() => {
     if (controlMode.value === CONTROL_MODES.basic) {
       return getBasicRadiusValue(radiusBasic.value, unit.value);
@@ -127,6 +146,7 @@ export function useBorderRadius() {
     borderRadiusCss,
     getBasicRadiusValue,
     getAdvanced4RadiusValue,
-    getAdvanced8RadiusValue
+    getAdvanced8RadiusValue,
+    randomize
   };
 };
