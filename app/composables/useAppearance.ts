@@ -4,7 +4,10 @@ export function useAppearance() {
     height: 420
   }));
 
+  const previewBgUrl = useState<string | undefined>('previewBgUrl', () => undefined);
+
   return {
-    previewSize
+    previewSize,
+    previewBgUrl
   };
 }

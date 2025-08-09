@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { StyleValue } from 'vue';
 import type { HandleKey4 } from '@/composables/useDragHandles4';
 import type { HandleKey8 } from '@/composables/useDragHandles8';
 
@@ -9,7 +10,7 @@ interface HandlesManager {
   onKeyDown: (handle: { key: HandleKey4 | HandleKey8 }, event: KeyboardEvent) => void;
 }
 
-const { previewSize } = useAppearance();
+const { previewSize, previewBgUrl } = useAppearance();
 const { borderRadiusValue, controlMode, radiusAdvanced4, radiusAdvanced8 } = useBorderRadius();
 
 const showOutline = ref(false);
@@ -19,7 +20,14 @@ const shouldShowHandles = computed(() =>
   controlMode.value === CONTROL_MODES.advanced4 || controlMode.value === CONTROL_MODES.advanced8
 );
 
-const borderRadiusCss = computed(() => ({ borderRadius: borderRadiusValue.value }));
+const previewStyle = computed<StyleValue>(() => ({
+  borderRadius: borderRadiusValue.value,
+  width: `${previewSize.value.width}px`,
+  height: `${previewSize.value.height}px`,
+  backgroundImage: previewBgUrl.value ? `url(${previewBgUrl.value})` : undefined,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center'
+}));
 
 const {
   draggingKey: draggingKey4,
@@ -60,11 +68,7 @@ const handlesManager = computed<HandlesManager>(() => {
       >
         <div
           class="relative max-h-full max-w-full bg-gradient-to-br from-primary to-error transition-all duration-100 ease-out will-change-[border-radius]"
-          :style="{
-            ...borderRadiusCss,
-            width: `${previewSize.width}px`,
-            height: `${previewSize.height}px`
-          }"
+          :style="previewStyle"
         />
 
         <div
