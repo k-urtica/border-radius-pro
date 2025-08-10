@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const showOutline = defineModel<boolean>('outline');
+const showHandles = defineModel<boolean>('handles');
 
 const emits = defineEmits<{
   randomize: [];
@@ -37,6 +38,20 @@ defineShortcuts({
           checked-icon="i-lucide-square-dashed"
           unchecked-icon="i-lucide-minus"
           aria-label="Toggle Outline"
+          size="sm"
+        />
+      </span>
+    </UTooltip>
+
+    <UTooltip :text="showHandles ? 'Hide Handles' : 'Show Handles'" arrow>
+      <span>
+        <USwitch
+          v-model="showHandles"
+          label="Handles"
+          checked-icon="i-lucide-circle-dot"
+          unchecked-icon="i-lucide-minus"
+          aria-label="Toggle Handles"
+          size="sm"
         />
       </span>
     </UTooltip>

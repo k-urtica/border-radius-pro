@@ -14,10 +14,11 @@ const { previewSize, previewBgUrl } = useAppearance();
 const { borderRadiusValue, controlMode, radiusAdvanced4, radiusAdvanced8, randomize } = useBorderRadius();
 
 const showOutline = ref(false);
+const showHandles = ref(true);
 const previewElementRef = useTemplateRef('previewElementRef');
 
 const shouldShowHandles = computed(() =>
-  controlMode.value === CONTROL_MODES.advanced4 || controlMode.value === CONTROL_MODES.advanced8
+  showHandles.value && (controlMode.value === CONTROL_MODES.advanced4 || controlMode.value === CONTROL_MODES.advanced8)
 );
 
 const previewStyle = computed<StyleValue>(() => ({
@@ -96,6 +97,7 @@ const handlesManager = computed<HandlesManager>(() => {
 
     <RadiusPreviewFooter
       v-model:outline="showOutline"
+      v-model:handles="showHandles"
       class="px-4 pb-2"
       @randomize="randomize"
     />
