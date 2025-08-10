@@ -45,7 +45,7 @@ defineEmits<{
     >
       <span
         aria-hidden="true"
-        class="pointer-events-none absolute inset-0 m-auto size-4 rounded-full bg-white/50 ring-1 ring-black/70"
+        class="pointer-events-none absolute inset-0 m-auto size-3.5 rounded-full bg-white/50 ring-1 ring-black/70"
       />
     </div>
   </UTooltip>

@@ -62,6 +62,8 @@ const handlesManager = computed<HandlesManager>(() => {
     aria-label="Border radius preview area"
     class="@container relative flex size-full flex-col items-center justify-center overflow-hidden rounded-lg bg-elevated"
   >
+    <div aria-hidden="true" class="bg-grid pointer-events-none absolute inset-0" />
+
     <div class="flex size-full min-h-0 flex-col items-center justify-center p-3">
       <div
         ref="previewElementRef"
@@ -103,3 +105,10 @@ const handlesManager = computed<HandlesManager>(() => {
     />
   </section>
 </template>
+
+<style scoped>
+.bg-grid {
+  background: radial-gradient(circle, --alpha(var(--ui-text-dimmed) / 0.15) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+</style>
