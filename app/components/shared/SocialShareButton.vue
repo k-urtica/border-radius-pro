@@ -70,7 +70,7 @@ const snsList = [
           />
           <UTooltip text="Copy URL">
             <UButton
-              :icon="copied ? 'i-lucide-copy-check' : 'i-lucide-copy'"
+              :icon="copied ? 'i-lucide-check' : 'i-lucide-copy'"
               :color="copied ? 'success' : 'neutral'"
               variant="soft"
               aria-label="Copy URL"
