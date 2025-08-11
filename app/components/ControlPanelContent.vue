@@ -16,17 +16,17 @@ const handlePresetSelect = (preset: Preset) => {
 </script>
 
 <template>
-  <div>
+  <div class="space-y-5">
     <section aria-label="Border radius settings">
       <BaseIconText
         as="h3"
         icon="i-lucide-settings-2"
-        class="mb-3 font-semibold"
+        class="mb-2 font-semibold"
       >
         Radius Settings
       </BaseIconText>
 
-      <div class="flex flex-col gap-5">
+      <div class="space-y-4">
         <BaseTabsSelector
           v-model="controlMode"
           label="Control Mode"
@@ -35,7 +35,6 @@ const handlePresetSelect = (preset: Preset) => {
         />
         <PresetList
           :presets="getPresetsByMode(controlMode)"
-          class="border-b pb-5"
           @preset-select="handlePresetSelect"
         />
 
@@ -51,6 +50,9 @@ const handlePresetSelect = (preset: Preset) => {
         />
       </div>
     </section>
-    <AppearanceSettings class="mt-5 border-t pt-5" />
+
+    <USeparator />
+
+    <AppearanceSettings />
   </div>
 </template>

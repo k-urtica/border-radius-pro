@@ -27,7 +27,7 @@ const handleClearFile = () => {
     <BaseIconText
       as="h3"
       icon="i-lucide-palette"
-      class="mb-3 font-semibold"
+      class="mb-2 font-semibold"
     >
       Appearance
     </BaseIconText>
