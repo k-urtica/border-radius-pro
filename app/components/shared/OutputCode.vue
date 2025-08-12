@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import type { ButtonProps } from '@nuxt/ui';
-import type { HTMLAttributes } from 'vue';
 
 const props = withDefaults(
   defineProps<{
     title?: string;
     code?: string;
-    preClass?: HTMLAttributes['class'];
   }>(),
   {
     code: '',
@@ -33,8 +31,8 @@ const buttonProps = computed<ButtonProps>(() => {
 </script>
 
 <template>
-  <section>
-    <div class="mb-1 flex items-center">
+  <section class="flex min-h-0 flex-col gap-1">
+    <div class="flex items-center">
       <BaseIconText
         v-if="title"
         as="h3"
@@ -55,10 +53,10 @@ const buttonProps = computed<ButtonProps>(() => {
     <div
       role="group"
       :aria-label="`Code block${title ? ` for ${title}` : ''}`"
-      class="rounded-lg border border-muted/60 bg-elevated"
+      class="flex min-h-0 flex-1 flex-col rounded-lg border border-muted/60 bg-elevated"
     >
       <pre
-        :class="cn('size-full overflow-auto p-4 font-mono text-sm whitespace-pre', preClass)"
+        class="size-full overflow-auto p-4 font-mono text-sm whitespace-pre"
         aria-label="Generated code"
       ><code>{{ code }}</code></pre>
     </div>
