@@ -68,7 +68,11 @@ const snsList = [
             color="neutral"
             variant="soft"
           />
-          <UTooltip text="Copy URL">
+          <UTooltip
+            :text="copied ? 'Copied!' : 'Copy URL'"
+            arrow
+            disable-closing-trigger
+          >
             <UButton
               :icon="copied ? 'i-lucide-check' : 'i-lucide-copy'"
               :color="copied ? 'success' : 'neutral'"

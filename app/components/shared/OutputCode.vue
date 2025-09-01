@@ -53,7 +53,7 @@ const buttonProps = computed<ButtonProps>(() => {
     <div
       role="group"
       :aria-label="`Code block${title ? ` for ${title}` : ''}`"
-      class="flex min-h-0 flex-1 flex-col rounded-lg border border-muted/60 bg-elevated"
+      class="flex min-h-0 flex-1 flex-col rounded-lg border border-default bg-elevated"
     >
       <pre
         class="size-full overflow-auto p-4 font-mono text-sm whitespace-pre"
