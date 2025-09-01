@@ -2,8 +2,8 @@
 const { isDocVisible } = useDocToggle();
 
 useSeoMeta({
-  title: 'Border Radius Pro',
-  titleTemplate: '%s - CSS Border Radius Generator',
+  title: 'CSS Border Radius Generator',
+  titleTemplate: '%s | Border Radius Pro',
 });
 </script>
 
