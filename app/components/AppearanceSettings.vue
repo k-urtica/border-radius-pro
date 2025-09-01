@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { FileUploadEmits } from '@nuxt/ui';
 import type { BaseSliderProps } from '@/components/base/BaseSlider.vue';
 
 const { previewSize, previewBgUrl } = useAppearance();
@@ -10,15 +11,19 @@ const sizeSliderProps: BaseSliderProps = {
   unit: 'px'
 };
 
-const handleChangeFile = (file: File | undefined) => {
-  const url = file ? useObjectUrl(file).value : undefined;
+// TODO: https://github.com/nuxt/ui/issues/4852
+const handleChangeFile = (file: unknown) => {
+  const _file = file as FileUploadEmits['update:modelValue'][0];
+
+  if (!_file) {
+    previewBgUrl.value = undefined;
+    return;
+  }
+
+  const url = useObjectUrl(_file).value;
   if (url) {
     previewBgUrl.value = url;
   }
-};
-
-const handleClearFile = () => {
-  previewBgUrl.value = undefined;
 };
 </script>
 
@@ -46,13 +51,16 @@ const handleClearFile = () => {
         />
       </div>
 
-      <BaseFileInput
-        label="Custom background"
-        clear-tooltip="Clear background"
-        accept="image/*"
-        @change="handleChangeFile"
-        @clear="handleClearFile"
-      />
+      <UFormField label="Custom background">
+        <UFileUpload
+          label="Drop your image here"
+          accept="image/*"
+          size="sm"
+          :multiple="false"
+          class="min-h-10 w-full"
+          @update:model-value="handleChangeFile"
+        />
+      </UFormField>
     </div>
   </section>
 </template>
