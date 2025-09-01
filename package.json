@@ -16,28 +16,28 @@
     "@nuxt/ui": "3.3.2",
     "@nuxtjs/mdc": "0.17.2",
     "@nuxtjs/seo": "3.1.0",
-    "@vueuse/core": "13.7.0",
-    "@vueuse/nuxt": "13.7.0",
-    "motion-v": "1.7.0",
+    "@vueuse/core": "13.8.0",
+    "@vueuse/nuxt": "13.8.0",
+    "motion-v": "1.7.1",
     "nuxt": "4.0.3",
     "remark-breaks": "4.0.0",
-    "vue": "3.5.19",
+    "vue": "3.5.20",
     "vue-router": "4.5.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "5.2.1",
     "@iconify/icons-lucide": "1.2.135",
     "@nuxt/eslint": "1.9.0",
-    "@nuxt/scripts": "0.11.10",
+    "@nuxt/scripts": "0.11.13",
     "clsx": "2.1.1",
-    "eslint": "9.33.0",
-    "eslint-plugin-better-tailwindcss": "3.7.5",
+    "eslint": "9.34.0",
+    "eslint-plugin-better-tailwindcss": "3.7.6",
     "eslint-plugin-format": "1.0.1",
     "lint-staged": "16.1.5",
     "simple-git-hooks": "2.13.1",
     "tailwind-merge": "3.3.1",
     "typescript": "5.9.2",
-    "wrangler": "4.31.0"
+    "wrangler": "4.33.1"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
