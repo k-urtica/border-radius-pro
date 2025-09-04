@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { FileUploadEmits } from '@nuxt/ui';
 import type { BaseSliderProps } from '@/components/base/BaseSlider.vue';
 
 const { previewSize, previewBgUrl } = useAppearance();
@@ -11,16 +10,13 @@ const sizeSliderProps: BaseSliderProps = {
   unit: 'px'
 };
 
-// TODO: https://github.com/nuxt/ui/issues/4852
-const handleChangeFile = (file: unknown) => {
-  const _file = file as FileUploadEmits['update:modelValue'][0];
-
-  if (!_file) {
+const handleChangeFile = (file?: File) => {
+  if (!file) {
     previewBgUrl.value = undefined;
     return;
   }
 
-  const url = useObjectUrl(_file).value;
+  const url = useObjectUrl(file).value;
   if (url) {
     previewBgUrl.value = url;
   }
