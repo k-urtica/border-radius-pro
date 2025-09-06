@@ -10,7 +10,7 @@ const sizeSliderProps: BaseSliderProps = {
   unit: 'px'
 };
 
-const handleChangeFile = (file?: File) => {
+const handleChangeFile = (file: File | null | undefined) => {
   if (!file) {
     previewBgUrl.value = undefined;
     return;
