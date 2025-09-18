@@ -69,10 +69,24 @@ const handlesManager = computed<HandlesManager>(() => {
         ref="previewElementRef"
         class="relative max-h-full max-w-full"
       >
-        <div
-          class="relative max-h-full max-w-full bg-gradient-to-br from-primary to-error transition-all duration-100 ease-out will-change-[border-radius]"
-          :style="previewStyle"
-        />
+        <Motion
+          as-child
+          :initial="{ opacity: 0, scale: 0.5, rotate: -180 }"
+          :animate="{
+            opacity: [0, 0.5, 1],
+            scale: [0.5, 1.05, 1],
+            rotate: [-180, 20, 0]
+          }"
+          :transition="{
+            duration: 0.8,
+            ease: 'easeInOut'
+          }"
+        >
+          <div
+            class="relative max-h-full max-w-full bg-gradient-to-br from-primary to-error transition-all duration-100 ease-out will-change-[border-radius]"
+            :style="previewStyle"
+          />
+        </Motion>
 
         <div
           v-if="showOutline"
