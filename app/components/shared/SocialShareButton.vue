@@ -35,6 +35,7 @@ const snsList = [
         size="sm"
         color="neutral"
         variant="outline"
+        aria-label="Share"
         class="rounded-full"
       />
     </UTooltip>
