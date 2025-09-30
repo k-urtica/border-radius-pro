@@ -62,7 +62,7 @@ const snsList = [
           </UTooltip>
         </div>
 
-        <UButtonGroup size="lg">
+        <UFieldGroup size="lg">
           <UInput
             :model-value="SHARE_URL"
             readonly
@@ -82,7 +82,7 @@ const snsList = [
               @click="copy(SHARE_URL)"
             />
           </UTooltip>
-        </UButtonGroup>
+        </UFieldGroup>
       </section>
     </template>
   </UPopover>
